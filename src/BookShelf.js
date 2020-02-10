@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Book from './Book';
 import PropTypes from 'prop-types';
-import * as BooksAPI from './BooksAPI';
 
 class BookShelf extends Component{
 
@@ -12,15 +11,15 @@ class BookShelf extends Component{
                   <div className="bookshelf-books">
                     <ol className="books-grid">
                     {
-                        this.props.booksArray.map((b) => (
+                        this.props.booksArray.map((b,i) => (
                             <li>
-                                <Book key={b.id.toString()} book={b} changeBookShelf={this.props.changeBookShelf} />                        
+                                <Book key={i} book={b} changeBookShelf={this.props.changeBookShelf} />                        
                             </li>
                         ))
                     }                      
                     </ol>
                   </div>
-                </div>
+            </div>
         );
     }
 }

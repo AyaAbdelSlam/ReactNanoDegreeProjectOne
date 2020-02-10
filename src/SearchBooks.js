@@ -12,6 +12,7 @@ class SearchBooks extends Component{
   filterBooks = (event) => {
     if (event.target.value.length > 0) {
       BooksAPI.search(event.target.value.toLowerCase()).then((result) => {
+        
         this.setState({
           filteredBooks:result
         })
@@ -23,8 +24,6 @@ class SearchBooks extends Component{
         filteredBooks: []
       });
     }
-    
-    
   }
     render() {
         return (
@@ -35,16 +34,15 @@ class SearchBooks extends Component{
               </Link>
           <div className="search-books-input-wrapper">
                 <input type="text" placeholder="Search by title or author" onChange={this.filterBooks}/>
-
           </div>
         </div>
         <div className="search-books-results">
               <ol className="books-grid">
                 {
                   this.state.filteredBooks.length > 0 ? (
-                    this.state.filteredBooks.map((b) => (
+                    this.state.filteredBooks.map((b,i) => (
                       <li>
-                        <Book key={b.id} book={b} changeBookShelf={this.props.changeBookShelf}/>             
+                        <Book key={i} book={b} changeBookShelf={this.props.changeBookShelf}/>             
                       </li>
                     ))
                   ) : (
