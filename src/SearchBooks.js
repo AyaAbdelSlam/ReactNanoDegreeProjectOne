@@ -8,6 +8,7 @@ class SearchBooks extends Component{
   state = {
     filteredBooks:[]
   }
+  
 
   filterBooks = (event) => {
     if (event.target.value.length > 0) {
@@ -25,7 +26,14 @@ class SearchBooks extends Component{
       });
     }
   }
-    render() {
+  render() {
+    this.state.filteredBooks.forEach((book) => {
+      this.props.myBooks.forEach((myBook) => {
+          if (myBook.id === book.id) {
+              book.shelf = myBook.shelf
+          }
+      })
+  });
         return (
             <div className="search-books">
             <div className="search-books-bar">
@@ -56,7 +64,8 @@ class SearchBooks extends Component{
 }
 
 SearchBooks.propTypes = {
-  changeBookShelf: PropTypes.func
+  changeBookShelf: PropTypes.func,
+  myBooks:PropTypes.array
 }
 
 export default SearchBooks;
