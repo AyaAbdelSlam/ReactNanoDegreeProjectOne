@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 class Book extends Component{
     
     handleChange = (event) => {
-        console.log(this.props.book.shelf);
         this.props.book.shelf = event.target.value;
         this.props.changeBookShelf(this.props.book);
     }
@@ -19,8 +18,9 @@ class Book extends Component{
                             width: 128, height: 188,
                             backgroundImage:  `url(${this.props.book.imageLinks.thumbnail})`
                         }) : ({
+                            
                             width: 128, height: 188,
-                            backgroundColor:  "grey"
+                            backgroundImage:  "url(http://via.placeholder.com/128x193?text=No%20Cover)"
                         })}></div>
                     <div className="book-shelf-changer">
                         <select onChange={this.handleChange} value={this.props.book.shelf == undefined ? 'none': this.props.book.shelf}>
@@ -34,7 +34,7 @@ class Book extends Component{
                 </div>
                 <div className="book-title">{this.props.book.title}</div>
                 <div className="book-authors">
-                    {(this.props.book.authors ) ? (this.props.book.authors.map((a) => a)):("")}                       
+                {Array.isArray(this.props.book.authors)? this.props.book.authors.join(', '):''}                       
                     </div>
             </div>
         );

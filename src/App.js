@@ -28,7 +28,6 @@ class BooksApp extends React.Component {
         read: booksResult.filter((b) => b.shelf === 'read'),
         wantToRead: booksResult.filter((b)=>b.shelf === 'wantToRead')
       })
-       console.log(this.state.books);
     })
   }
   changeBookShelf = (updatedbook) => {
