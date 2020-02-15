@@ -47,9 +47,9 @@ class SearchBooks extends Component{
               <ol className="books-grid">
                 {
                   this.state.filteredBooks.length > 0 ? (
-                    this.state.filteredBooks.map((b) => (
-                      <li>
-                        <Book key={b.id} book={b} changeBookShelf={this.props.changeBookShelf}/>             
+                    this.state.filteredBooks.map((b,i) => (
+                      <li key={i}>
+                        <Book book={b} changeBookShelf={this.props.changeBookShelf}/>             
                       </li>
                     ))
                   ) : (
